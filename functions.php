@@ -1,10 +1,10 @@
 <?php
 function loadresult($apicall) {
-$xml = simplexml_load_file($apicall) 
-       or die("Error: Cannot create object");	   
+$xml = simplexml_load_file($apicall)
+       or die("Error: Cannot create object");
 foreach($xml->children() as $results){
 foreach($results->children() as $result => $data){
-define('id', $data->id);
+define('id', $data->id); 
 define('company_name', $data->company_name);
 define('mailing_address', $data->mailing_address);
 define('mailing_city', $data->mailing_city);
@@ -38,11 +38,11 @@ define('products_services', $data->products_services);
 }}}
 
 function loadresults($apicall) {
-$xml = simplexml_load_file($apicall) 
-       or die("Error: Cannot create object");	
-echo '<div class="row">';      
+$xml = simplexml_load_file($apicall)
+       or die("Error: Cannot create object");
+echo '<div class="row">';
 foreach($xml->children() as $results){
-foreach($results->children() as $result => $data){	
+foreach($results->children() as $result => $data){
 $id = $data->id;
 $company_name = $data->company_name;
 $physical_province = $data->physical_province;
@@ -55,11 +55,11 @@ echo '</div>';
 }
 
 function loadrandomresults($apicall) {
-$xml = simplexml_load_file($apicall) 
-       or die("Error: Cannot create object");	
-echo '<div class="row">';   
+$xml = simplexml_load_file($apicall)
+       or die("Error: Cannot create object");
+echo '<div class="row">';
 foreach($xml->children() as $results){
-foreach($results->children() as $result => $data){	
+foreach($results->children() as $result => $data){
 $id = $data->id;
 $company_name = $data->company_name;
 $physical_province = $data->physical_province;
@@ -73,15 +73,15 @@ echo '</div>';
 
 function loadsitemap($apicall) {
 include 'Sitemap.php';
-$sitemap = new Sitemap('http://canadawhiz.com'); 
-$xml = simplexml_load_file($apicall) 
-       or die("Error: Cannot create object");	  
+$sitemap = new Sitemap('http://canadawhiz.com');
+$xml = simplexml_load_file($apicall)
+       or die("Error: Cannot create object");
 foreach($xml->children() as $results){
-foreach($results->children() as $result => $data){	
+foreach($results->children() as $result => $data){
 $company_id = $data->id;
 $company_name = $data->company_name;
  $sitemap->addItem('/'.$company_id.'/'.str_replace(' ','-',$company_name).'.html', '1.0', 'monthly', 'Today');}
- 
+
  }
  $sitemap->createSitemapIndex('http://canadawhiz.com/', 'Today');
 }
